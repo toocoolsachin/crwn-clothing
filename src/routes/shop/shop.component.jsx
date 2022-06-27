@@ -1,9 +1,18 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import CategoryPreview from "../../routes/category-preview/categories-preview.component";
 import { Routes, Route } from "react-router-dom";
 import "./shop.styles.scss";
 import Category from "../category/category.component";
+import { fetchCategoriesAsync } from "../../store/categories/category.action";
 
 const Shop = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategoriesAsync());
+  }, []);
+
   return (
     <Routes>
       <Route index element={<CategoryPreview />} />
